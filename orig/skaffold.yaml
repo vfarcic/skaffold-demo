@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+build:
+  artifacts:
+  - image: vfarcic/devops-toolkit
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*
+profiles:
+  - name: prod
+    deploy:
+      kustomize:
+        paths:
+        - kustomize/*
+    
+# kaniko
