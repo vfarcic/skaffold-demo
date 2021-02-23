@@ -3,15 +3,14 @@ kind: Config
 build:
   artifacts:
   - image: vfarcic/devops-toolkit
-deploy:
-  kubectl:
-    manifests:
-      - k8s/*
 profiles:
+  - name: dev
+    deploy:
+      kubectl:
+        manifests:
+        - k8s/*
   - name: prod
     deploy:
       kustomize:
         paths:
-        - kustomize/*
-    
-# kaniko
+        - kustomize/overlays/production
